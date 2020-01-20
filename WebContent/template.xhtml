@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Imob</title>
+	<link rel="stylesheet" href="../CSS/geral.css" />
+</h:head>
+<h:body>
+	<h3 class="fontePadrao">Sistema Imob</h3>
+	<hr />
+	<p:menubar>
+		<p:menuitem value="Home" url="index.xhtml" />
+		<p:menuitem value="Atedimentos" url="#" />
+		<p:menuitem value="Agendamentos" url="#" />
+		<p:submenu label="Cadastros">
+			<p:menuitem value="Pessoa Fisicas" url="cadastropessoafisica.xhtml" />
+			<p:menuitem value="Pessoa Jurídica" url="#" />
+			<p:menuitem value="Imóveis Urbanos" url="#" />
+			<p:menuitem value="Imóveis Rurais" url="#" />
+			<p:menuitem value="Corretores" url="#" />
+			<p:menuitem value="Imobiliárias" url="#" />
+			<p:menuitem value="Funcionários" url="#" />
+			<p:menuitem value="Prestadores de serviços" url="#" />
+			<p:menuitem value="Login" url="#" />
+			<p:menuitem value="Logradouros" url="#" />
+			<p:menuitem value="Bairros" url="#" />
+			<p:menuitem value="Cidades" url="#" />
+			<p:menuitem value="Estados" url="estados.xhtml" />
+		</p:submenu>
+		<p:submenu label="Relatórios">
+			<p:menuitem value="" url="#" />
+		</p:submenu>
+		<p:submenu label="Pesquisas">
+			<p:menuitem value="" url="#" />
+		</p:submenu>
+		<p:submenu label="Pagamentos">
+			<p:menuitem value="Comissões" url="#" />
+		</p:submenu>
+		<p:menuitem value="Sair" url="#" />
+	</p:menubar>
+	<br />
+	<ui:insert name="content">
+	</ui:insert>
+	
+</h:body>
+</html>

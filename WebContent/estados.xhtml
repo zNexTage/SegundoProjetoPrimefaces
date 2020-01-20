@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:l="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:decorate template="/template.xhtml">	
+	<ui:define name="content">
+		<h:form id="form_cadastros_estados">
+			<p:fieldset id="fsCadastros" legend="Cadastrar Estado">
+				<p:panelGrid id="pngTable" columns="2">
+					<h:outputLabel value="Estado" for="txtEstado" />
+					<h:outputLabel value="Sigla" for="txtSigla" />
+					<p:inputText id="txtEstado" value="#{estadosBean.estado.sNome}" />
+					<p:inputText id="txtSigla" value="#{estadosBean.estado.sSigla}" />
+				</p:panelGrid>
+				<br />
+				<p:panelGrid columns="3">
+					<p:commandButton id="btnEnviar" value="Enviar" ajax="true"
+						update="@form" icon="ui-icon-disk"
+						styleClass="ui-priority-primary"
+						actionListener="#{estadosBean.addEstado()}" />
+					<p:commandButton id="btnDeletar" value="Deletar" ajax="true"
+						icon="ui-icon-close" styleClass="ui-priority-primary"
+						update="@form" />
+					<p:commandButton id="btnAlterar" value="Alterar" ajax="true"
+						styleClass="ui-priority-primary" icon="ui-icon-arrowrefresh-1-w"
+						update="@form" />
+				</p:panelGrid>
+
+
+				<br />
+				<p:dataTable id="tblEstados" value="#{estadosBean.listEstados}" var="dtEstados">
+					<p:column headerText="Id">
+						<h:outputText value="#{dtEstados.iCodEstado}"></h:outputText>
+					</p:column>
+					<p:column headerText="Estados">
+						<h:outputText value="#{dtEstados.sNome}"></h:outputText>
+					</p:column>
+					<p:column headerText="Siglas">
+						<h:outputText value="#{dtEstados.sSigla}"></h:outputText>
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:decorate>
+<p:dialog header="#{estadosBean.sCabecalhoModal}"
+	widgetVar="modalMessage" modal="true" height="100">
+	<h:outputText value="#{estadosBean.sMensagemModal}" />
+</p:dialog>
+</html>
