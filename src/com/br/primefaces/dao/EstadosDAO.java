@@ -131,5 +131,83 @@ public class EstadosDAO {
 		
 		return listEstados;
 	}
+
+	/**
+	 * Atualiza o estado no banco de dados
+	 * @param estado
+	 */
+	public void atualizarEstado(Estado estado) 
+	{
+		StringBuilder sbComando;
+		PreparedStatement pstComando = null;
+		
+		
+		try 
+		{
+			//Instancia o string builder
+			sbComando = new StringBuilder();
+			
+			//Monta o comando
+			sbComando.append(" UPDATE TBL_ESTADOS ");
+			sbComando.append(" SET ESTADO = ?, SIGLA = ? ");
+			sbComando.append(" WHERE ID_ESTADO = ? ");
+			
+			//Define o comando a ser executado
+			pstComando = conexao.prepareStatement(sbComando.toString());
+			
+			//Define os valores dos parametros
+			pstComando.setString(1, estado.getsNome());
+			pstComando.setString(2, estado.getsSigla());
+			pstComando.setInt(3, estado.getiCodEstado());
+			
+			//Executa o comando
+			pstComando.executeUpdate();
+		}
+		catch(Exception err) 
+		{
+			err.printStackTrace();
+		}
+		finally 
+		{
+			DatabaseFactory.desconectar(conexao, pstComando);
+		}
+	}
+	
+	/**
+	 * Deleta o estado pelo id
+	 * @param iIdEstado
+	 */
+	public void deletarEstado(int iIdEstado)
+	{
+		StringBuilder sbComando;
+		PreparedStatement pstComando = null;
+		
+		try 
+		{
+			//Instancia o stringbuilder
+			sbComando = new StringBuilder();
+			
+			//Monta o comando
+			sbComando.append(" DELETE FROM TBL_ESTADOS ");
+			sbComando.append(" WHERE ID_ESTADO = ? ");
+			
+			//Define o comando a ser executado
+			pstComando = conexao.prepareStatement(sbComando.toString());
+			
+			//Define os parametros
+			pstComando.setInt(1, iIdEstado);
+			
+			//Executa o comando
+			pstComando.executeUpdate();
+		}
+		catch(Exception err) 
+		{
+			err.printStackTrace();
+		}
+		finally 
+		{
+			DatabaseFactory.desconectar(conexao, pstComando);
+		}
+	}
 }
 
