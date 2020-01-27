@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+body {
+	font-size: 16px;
+	font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	margin: 10px;
+}
+
+h3 {
+	font-size: 24px;
+	color: white;
+}
+
+.pnlTitulo.ui-panelgrid>*>tr, .pnlTitulo.ui-panelgrid .ui-panelgrid-cell
+	{
+	border: none;
+	background-color: purple;
+}
+
+.imgLogo {
+	width: 80px;
+	border-radius: 15px;
+}
+
+.divCabecalho {
+	width: 100%;
+	background-color: purple;
+}
+
+.btn-danger {
+	color: white !important;
+	background: red !important;
+}
+
+.btn-update {
+	color: white !important;
+	background: #20B2AA !important;
+}
+
+.btn-success {
+	color: white !important;
+	background:#008000 !important;
+}

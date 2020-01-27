@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:l="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:decorate template="/template.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:fieldset legend="Cadastrar Cidade">
+				<p:panelGrid id="pngTable" columns="2">
+					<h:outputLabel value="Cidade" for="txtCidade" />
+					<h:outputLabel value="Estado" for="cboEstado" />
+					<p:inputText id="txtCidade"
+						value="#{cidadeBean.cidade.sNomeCidade}"
+						placeholder="Digite o nome da cidade" />
+					<p:selectOneMenu value="#{cidadeBean.cidade.iCodEstado}"
+						filter="true" filterPlaceholder="Digite a sigla do estado"
+						id="cboEstado">
+						<f:selectItems value="#{cidadeBean.preencherComboEstado()}"
+							var="estado" itemLabel="#{estado.sSigla}"
+							itemValue="#{estado.iCodEstado}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid columns="3">
+					<p:commandButton id="btnEnviar" value="Enviar" ajax="true"
+						update="@form" icon="ui-icon-disk" styleClass="btn-success"
+						disabled="#{cidadeBean.disabledEnviar}"
+						actionListener="#{cidadeBean.addCidade()}" />
+					<p:commandButton id="btnAtualizar" value="Atualizar" ajax="true"
+						update="@form" icon="ui-icon-disk"
+						styleClass="ui-priority-primary"
+						disabled="#{cidadeBean.disabledUptade}"
+						actionListener="#{cidadeBean.atualizaCidade()}" />
+					<p:commandButton id="btnCancelar" value="Cancelar" ajax="true"
+						update="@form" icon="ui-icon-disk"
+						disabled="#{cidadeBean.disabledCancelar}"
+						styleClass="btn-danger"
+						actionListener="#{cidadeBean.cancelarAtualizacao()}" />
+				</p:panelGrid>
+				<br />
+				<p:dataTable id="tblCidades" var="dtCidade"
+					value="#{cidadeBean.listCidade}" reflow="true" paginator="true"
+					rows="10">
+					<p:column headerText="Id Cidade" style="display:none;">
+						<h:outputText value="#{dtCidade.iIdCidade}"></h:outputText>
+					</p:column>
+					<p:column headerText="Cidade">
+						<h:outputText value="#{dtCidade.sNomeCidade}"></h:outputText>
+					</p:column>
+					<p:column headerText="Id Estado" style="display:none;">
+						<h:outputText value="#{dtCidade.iCodEstado}"></h:outputText>
+					</p:column>
+					<p:column headerText="Estado">
+						<h:outputText value="#{dtCidade.sSigla}"></h:outputText>
+					</p:column>
+					<p:column width="113" headerText="Atualizar estado">
+						<p:commandButton id="btnAlterar" value="Alterar" ajax="true"
+							styleClass="btn-update" icon="ui-icon-pencil"
+							actionListener="#{cidadeBean.getValueDataTable(dtCidade)}"
+							update="@form" />
+					</p:column>
+					<p:column width="113" headerText="Deletar estado">
+						<p:commandButton id="btnDeletar" value="Deletar" ajax="true"
+							icon="ui-icon-close" styleClass="btn-danger"
+							actionListener="#{cidadeBean.deletarCidade(dtCidade.iIdCidade)}"
+							update="@form" />
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:decorate>
+</html>

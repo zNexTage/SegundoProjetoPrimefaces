@@ -42,15 +42,6 @@ public class EstadosBean {
 
 	@PostConstruct
 	public void init() {
-		UIViewRoot uiView = FacesContext.getCurrentInstance().getViewRoot();
-
-		// Define os componentes
-
-		this.txtEstado = this.findComponent("txtEstado");
-		this.txtSigla = uiView.findComponent(":form_cadastros_estados:txtSigla");
-		this.lblIdEstado = uiView.findComponent(":form_cadastros_estados:lblIdEstado");
-		this.btnEnviar = uiView.findComponent(":form_cadastros_estados:btnEnviar");
-
 		// Preenche a tabela com o estados
 		preencherTabela();
 	}
@@ -188,34 +179,6 @@ public class EstadosBean {
 		context.addMessage(null, facesMsg);
 	}
 
-	public UIComponent findComponent(String id) {
-
-		UIComponent result = null;
-		UIComponent root = FacesContext.getCurrentInstance().getViewRoot();
-		if (root != null) {
-			result = findComponent(root, id);
-		}
-		return result;
-
-	}
-
-	private UIComponent findComponent(UIComponent root, String id) {
-
-		UIComponent result = null;
-		if (root.getId().equals(id))
-			return root;
-
-		for (UIComponent child : root.getChildren()) {
-			if (child.getId().equals(id)) {
-				result = child;
-				break;
-			}
-			result = findComponent(child, id);
-			if (result != null)
-				break;
-		}
-		return result;
-	}
 
 	/**
 	 * GETTERS E SETTERS DAS VARIAVEIS E DOS OBJETOS

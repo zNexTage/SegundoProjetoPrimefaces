@@ -14,15 +14,15 @@
 				<p:panelGrid id="pngTable" columns="2">
 					<h:outputLabel value="Estado" for="txtEstado" />
 					<h:outputLabel value="Sigla" for="txtSigla" />
-					<p:inputText id="txtEstado" value="#{estadosBean.estado.sNome}" />
-					<p:inputText id="txtSigla" maxlength="2"
+					<p:inputText id="txtEstado" placeholder="Digite o nome do estado" value="#{estadosBean.estado.sNome}" />
+					<p:inputText id="txtSigla" placeholder="Digite a sigla do estado"  maxlength="2"
 						value="#{estadosBean.estado.sSigla}" />
 				</p:panelGrid>
 				<br />
 				<p:panelGrid columns="3">
 					<p:commandButton id="btnEnviar" value="Enviar" ajax="true"
 						update="@form" icon="ui-icon-disk"
-						styleClass="ui-priority-primary"
+						styleClass="btn-success"
 						disabled="#{estadosBean.disabledEnviar}"
 						actionListener="#{estadosBean.addEstado()}" />
 					<p:commandButton id="btnAtualizar" value="Atualizar" ajax="true"
@@ -39,7 +39,9 @@
 					value="#{estadosBean.listEstados}"
 					var="dtEstados"
 					reflow="true"
-					paginator="true">
+					paginator="true"
+					rows="10" 
+					>
 					<p:column headerText="Id">
 						<h:outputText value="#{dtEstados.iCodEstado}"></h:outputText>
 					</p:column>
@@ -49,19 +51,21 @@
 					<p:column headerText="Siglas">
 						<h:outputText value="#{dtEstados.sSigla}"></h:outputText>
 					</p:column>
-					<p:column headerText="Atualizar estado">
+					<p:column width="113" headerText="Atualizar estado">
 						<p:commandButton id="btnAlterar"
 							value="Alterar"
 							ajax="true"
-							styleClass="ui-priority-primary"
-							icon="ui-icon-arrowrefresh-1-w"
+							styleClass="btn-update"
+							icon="ui-icon-pencil"
 							actionListener="#{estadosBean.editarEstado(dtEstados)}"
 							update="@form"
 							  />
 					</p:column>
-					<p:column headerText="Deletar estado">
-						<p:commandButton id="btnDeletar" value="Deletar" ajax="true"
-							icon="ui-icon-close" styleClass="ui-priority-primary"
+					<p:column width="113" headerText="Deletar estado">
+						<p:commandButton id="btnDeletar"
+							value="Deletar" ajax="true"
+							icon="ui-icon-close"
+							styleClass="btn-danger"
 							actionListener="#{estadosBean.deletarEstado(dtEstados)}"
 							update="@form" />
 					</p:column>

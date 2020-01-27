@@ -10,10 +10,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Imob</title>
-	<link rel="stylesheet" href="../CSS/geral.css" />
+	<link rel="stylesheet" href="resources/CSS/geral.css" />
 </h:head>
 <h:body>
-	<h3 class="fontePadrao">Sistema Imob</h3>
+	<div class="divCabecalho">
+		<p:panelGrid columns="2" styleClass="pnlTitulo">
+			<p:graphicImage styleClass="imgLogo" style="width:80px"
+				value="resources/images/logo.jpg" />
+			<h3>Sistema Imob</h3>
+		</p:panelGrid>
+	</div>
 	<hr />
 	<p:menubar>
 		<p:menuitem value="Home" url="index.xhtml" />
@@ -48,6 +54,6 @@
 	<br />
 	<ui:insert name="content">
 	</ui:insert>
-	
+
 </h:body>
 </html>
